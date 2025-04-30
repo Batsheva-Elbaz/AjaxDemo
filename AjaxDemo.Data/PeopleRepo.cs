@@ -16,7 +16,7 @@ namespace AjaxDemo.Data
         {
             using var connection = new SqlConnection(_connectionString);
             using var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM People";
+            cmd.CommandText = "SELECT * FROM Person";
             connection.Open();
             var list = new List<Person>();
             var reader = cmd.ExecuteReader();
@@ -39,7 +39,7 @@ namespace AjaxDemo.Data
         {
             using var connection = new SqlConnection(_connectionString);
             using var cmd = connection.CreateCommand();
-            cmd.CommandText = "INSERT INTO People (FirstName, LastName, Age) " +
+            cmd.CommandText = "INSERT INTO Person (FirstName, LastName, Age) " +
                 "VALUES (@first, @last, @age) SELECT SCOPE_IDENTITY()";
             cmd.Parameters.AddWithValue("@first", person.FirstName);
             cmd.Parameters.AddWithValue("@last", person.LastName);
@@ -53,7 +53,7 @@ namespace AjaxDemo.Data
 
             var connection = new SqlConnection(_connectionString);
             var cmd = connection.CreateCommand();
-            cmd.CommandText = "UPDATE People SET FirstName =@firstName, LastName = @lastName,Age=@age WHERE Id = @id";
+            cmd.CommandText = "UPDATE Person SET FirstName =@firstName, LastName = @lastName,Age=@age WHERE Id = @id";
             cmd.Parameters.AddWithValue("@firstName", p.FirstName);
             cmd.Parameters.AddWithValue("@lastName", p.LastName);
             cmd.Parameters.AddWithValue("@age", p.Age);
@@ -66,7 +66,7 @@ namespace AjaxDemo.Data
         {
             using var connection = new SqlConnection(_connectionString);
             using var cmd = connection.CreateCommand();
-            cmd.CommandText = "Delete From People WHERE Id =@id";
+            cmd.CommandText = "Delete From Person WHERE Id =@id";
             cmd.Parameters.AddWithValue("@id", id);
             connection.Open();
             cmd.ExecuteNonQuery();

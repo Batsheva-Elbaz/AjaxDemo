@@ -15,8 +15,8 @@
                 <td>${person.firstName}</td>
                 <td>${person.lastName}</td>
                 <td>${person.age}</td>
-                 <th><button class="btn btn-warning" onclick="edit(${person.id}, '${person.firstName}', '${person.lastName}', ${person.age})">Edit</button></th>
-                 <th><button class="btn btn-danger" onclick="deletePerson(${person.id})">Delete</button></th>
+                 <th><button class="btn btn-warning"  id="edit" value="${person.id}">Edit</button></th>
+                 <th><button class="btn btn-danger" id="delete" value=${person.id}">Delete</button></th>
 
                 </tr>`);
             })
@@ -52,7 +52,7 @@
     })
 
 
-    window.edit = function (id, firstName, lastName, age) {
+    $(".table").on('click', "#edit", function () {
         $("#first").val(firstName);
         $("#last").val(lastName);
         $("#editAge").val(age);
@@ -79,12 +79,12 @@
         });
 
     })
-        ;
-    window.deletePerson = function (id) {
-        $.post('/home/delete', { id: id }, function () {
+        
+    $(".table").on('click', "#deletePerson", function () {
+        $.post('/home/delete', { id: $(this).val() }, function () {
             refreshPeople();
-        });
-    }
+        })
+    })
 
     refreshPeople()
 });

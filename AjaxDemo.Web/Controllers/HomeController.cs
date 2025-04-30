@@ -8,7 +8,7 @@ namespace AjaxDemo.Web.Controllers
     public class HomeController : Controller
     {
         private string _connectionString =
-            "Data Source=.\\sqlexpress;Initial Catalog=HW02-05-2025 People;Integrated Security=True;Trust Server Certificate=true;";
+            "Data Source=.\\sqlexpress;Initial Catalog=People;Integrated Security=True;Trust Server Certificate=true;";
 
         public IActionResult Index()
         {
